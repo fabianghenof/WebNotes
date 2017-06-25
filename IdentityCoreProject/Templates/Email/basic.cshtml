@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>My Basic Email Template Subject</title>
+</head>
+<body style="text-align: center">
+    <h1 style="color: #969696">Hello from <span style="color: #646464">WebNotes!</span></h1>
+    <div><h3>@Model.Sender has sent you the following WebNote:</h3></div>
+    <div style="background-color: #ffe9fa; border-radius: 10px;border: 1px solid #cfcfcf; padding: 2px">
+        <div>
+            <h3 style="font-size:1.8em">
+                <span>@Model.Title</span>
+            </h3>
+        </div>
+        <div>
+            <p style="font-size:1.3em">@Model.Content</p>
+        </div>
+    </div>
+    <hr />
+    <footer>
+        <p><a href="https://identitycoreproject20170608041442.azurewebsites.net/">WebNotes</a>, visit us! :)</p>
+    </footer>
+</body>
+</html>

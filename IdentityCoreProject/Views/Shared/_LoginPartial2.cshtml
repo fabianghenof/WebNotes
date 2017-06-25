@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IdentityCoreProject.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-area="" asp-controller="Home" asp-action="DownloadNotes" id="dld-notes-link">Download my WebNotes</a>
+
+}
+else
+{
+}

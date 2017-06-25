@@ -1,0 +1,20 @@
+C:\Users\Fabi\documents\visual studio 2017\Projects\IdentityCoreProject\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.deps.json
+C:\Users\Fabi\documents\visual studio 2017\Projects\IdentityCoreProject\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.runtimeconfig.json
+C:\Users\Fabi\documents\visual studio 2017\Projects\IdentityCoreProject\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.runtimeconfig.dev.json
+C:\Users\Fabi\documents\visual studio 2017\Projects\IdentityCoreProject\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.dll
+C:\Users\Fabi\documents\visual studio 2017\Projects\IdentityCoreProject\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.pdb
+C:\Users\Fabi\documents\visual studio 2017\Projects\IdentityCoreProject\IdentityCoreProject\obj\Release\netcoreapp1.1\IdentityCoreProject.csprojResolveAssemblyReference.cache
+C:\Users\Fabi\documents\visual studio 2017\Projects\IdentityCoreProject\IdentityCoreProject\obj\Release\netcoreapp1.1\IdentityCoreProject.AssemblyInfo.cs
+C:\Users\Fabi\documents\visual studio 2017\Projects\IdentityCoreProject\IdentityCoreProject\obj\Release\netcoreapp1.1\IdentityCoreProject.dll
+C:\Users\Fabi\documents\visual studio 2017\Projects\IdentityCoreProject\IdentityCoreProject\obj\Release\netcoreapp1.1\IdentityCoreProject.pdb
+C:\Users\Fabi\documents\visual studio 2017\Projects\IdentityCoreProject\IdentityCoreProject\obj\Release\netcoreapp1.1\UserSecretsAssemblyInfo.cs
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\IdentityCoreProject - with Knockout\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.deps.json
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\IdentityCoreProject - with Knockout\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.runtimeconfig.json
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\IdentityCoreProject - with Knockout\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.runtimeconfig.dev.json
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\IdentityCoreProject - with Knockout\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.dll
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\IdentityCoreProject - with Knockout\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.pdb
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\IdentityCoreProject - with Knockout\IdentityCoreProject\obj\Release\netcoreapp1.1\IdentityCoreProject.csprojResolveAssemblyReference.cache
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\IdentityCoreProject - with Knockout\IdentityCoreProject\obj\Release\netcoreapp1.1\IdentityCoreProject.AssemblyInfo.cs
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\IdentityCoreProject - with Knockout\IdentityCoreProject\obj\Release\netcoreapp1.1\IdentityCoreProject.dll
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\IdentityCoreProject - with Knockout\IdentityCoreProject\obj\Release\netcoreapp1.1\IdentityCoreProject.pdb
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\IdentityCoreProject - with Knockout\IdentityCoreProject\obj\Release\netcoreapp1.1\UserSecretsAssemblyInfo.cs

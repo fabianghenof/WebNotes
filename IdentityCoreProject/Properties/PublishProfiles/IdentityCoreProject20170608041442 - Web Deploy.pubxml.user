@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAplLD18MFbUWJ5/3sRRSl0QAAAAACAAAAAAAQZgAAAAEAACAAAABE4Gr2CDRN2Sm0iJmj/0M9zRzP2aha8/6bZ6fNaB24IAAAAAAOgAAAAAIAACAAAABJy40ZW24YLpnb3EnQn1S7X9BP8ergEUPpDAi1onU+koAAAAD3k+8QGqcyb45jihcTz18khZ1BmKKKXayM1LFYU4ImQpXbPDBswtNkl9P5obIb19dXXXYLjZo6SiWQfEz+FJr4Y1jEKIc5p9n896da+wtH58E4WaCXc5MDYlo8AWwnUQo/8lx9B3nu5imKW+j8DGRc6fQMk84LCpgSV9WcwBQqZ0AAAAAzMRTV4Ql1x/1J2h9n0dZKglURD0NEFvq+b7A+QpRRnCFDAIIdEZ0AdRs43brOQPY3pixryGRc3Yy79aYu9BN+</EncryptedPassword>
+    <_NewBackgroundProfile>False</_NewBackgroundProfile>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:identitycoreproject20170608041442dbserver.database.windows.net,1433;Initial Catalog=IdentityCoreProject20170608041442_db;User Id=fabian.ghenof@identitycoreproject20170608041442dbserver;Password=Xconta2295@</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="IdentityCoreProject.Data.ApplicationDbContext">
+      <Value>Data Source=tcp:identitycoreproject20170608041442dbserver.database.windows.net,1433;Initial Catalog=IdentityCoreProject20170608041442_db;User Id=fabian.ghenof@identitycoreproject20170608041442dbserver;Password=Xconta2295@</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

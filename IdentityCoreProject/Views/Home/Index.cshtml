@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<WebNote>
+
+<!--Main Jumbotron-->
+<div class="jumbotron" id="jumbotron">
+    <h1><i class="glyphicon glyphicon-edit" id="webnotes-icon"></i>WebNotes</h1>
+    <p>Quickly create notes and organize your life using this simple tool.</p>
+
+    <button class="btn btn-primary btn-lg" data-bind="click: toggleAddNoteForm">
+        Add Note <span class="caret"></span>
+    </button>
+
+    <!--New Note Form-->
+    <div class="hidden" id="new-note-form">
+        <form class="form-group form-group-lg"> 
+            <input type="text" class="form-control" placeholder="Title" id="note-title">
+            <textarea class="form-control" rows="3" placeholder="Content" id="note-content"></textarea>
+
+            <button type="button" class="btn btn-default pull-right" data-bind="click: submitNote" >
+                <span class="text-success">Create Note</span>
+                <i class="glyphicon glyphicon-ok text-success"></i>
+            </button>
+
+            <!--Color Picker dropdown button-->
+            <div class="btn-group">
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="color-button">
+                    <span id="color-button-text">Green</span> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li data-bind="click: noteColor.bind(this, 'green')"><a href="#"><span class="text-success">Green</span></a></li>
+                    <li data-bind="click: noteColor.bind(this, 'blue')"><a href="#"><span class="text-info">Blue</span></a></li>
+                    <li data-bind="click: noteColor.bind(this, 'orange')"><a href="#"><span class="text-warning">Orange</span></a></li>
+                    <li data-bind="click: noteColor.bind(this, 'red')"><a href="#"><span class="text-danger">Red</span></a></li>
+                </ul>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+
+<!--NOTES Div-->
+<div id="notes-div">
+
+    <!--Note template-->
+    <div class="table-responsive">
+        <table class="table table-condensed" data-bind="with: webNotesData">
+            <thead><tr> 
+                <th class="text-center">
+                    Priority 
+                    <a data-bind="click: $root.groupByPriority">
+                    <i class="glyphicon glyphicon-sort-by-attributes-alt" style="cursor: pointer"></i>
+                    </a>
+                </th>
+                <th>Title</th> <th>Content</th> <th>Tools</th> <th>File</th></tr></thead>
+            <tbody data-bind="foreach: notes">
+                <tr>
+                    <td class="text-center"><i class="glyphicon glyphicon-bookmark" data-bind="style: {'font-size': '150%', 'color': color}"></i></td>
+                    <td data-bind="visible: !(isEditable())">
+                            <p data-bind="text: title"></p>
+                    <td data-bind="visible: isEditable"><input type="text" data-bind="value: $root.noteTitle" class="form-control" /></td>
+                    <td data-bind="visible: !(isEditable())">
+                            <p data-bind="text: content"></p>
+                    </td>
+                    <td data-bind="visible: isEditable"><textarea rows="3" data-bind="value: $root.noteContent" class="form-control"></textarea></td>
+                    <td>
+                        <!--Note Tool Buttons-->
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-info" data-bind="click: $root.EditNote.bind(this), visible: !(isEditable())"><i class="glyphicon glyphicon-edit" id="font-bigger"></i></button>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target=".email-modal"
+                                    data-bind="visible: !(isEditable()), click: function () { $root.setNoteToEmail(id);}">
+                                <i class="glyphicon glyphicon-envelope font-bigger"></i>
+                            </button>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target=".attach-modal"
+                                    data-bind="visible: !(isEditable()), click: $root.setNoteToAttachFileTo.bind(this, id)">
+                                <i class="glyphicon glyphicon-file"></i>
+                            </button>
+                        </div>
+                        <!--Note Move Up/Down Buttons-->
+                        <div class="btn-group btn-group-sm" data-bind="visible: !($root.sortedByPriority())">
+                            <button class="btn btn-default" data-bind="click: $root.moveNoteUp.bind(this), visible: !(isEditable())"><i class="glyphicon glyphicon-arrow-up"></i></button>
+                            <button class="btn btn-default" data-bind="click: $root.moveNoteDown.bind(this), visible: !(isEditable())"><i class="glyphicon glyphicon-arrow-down"></i></button>
+                        </div>
+                        <!--Note Delete Button-->
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-danger" data-bind="click: $root.removeNote.bind(this, id), visible: !(isEditable())">
+                                <i class="glyphicon glyphicon-remove"></i><p data-bind="visible: $root.deleteClickedOnce">ads</p>
+                            </button>
+                        </div>
+                        <button class="btn btn-success" data-bind="visible: isEditable, click: $root.saveNote.bind(this)"><i class="glyphicon glyphicon-check"></i></button>
+                    </td>
+                    <td><a data-bind="visible: hasFile"><i class="glyphicon glyphicon-paperclip"></i></a></td>
+
+            </tbody>
+        </table>
+    </div>
+    <!--Email Modal-->
+    <div class="modal fade email-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <h4 class="text-center">Email this note to someone?</h4>
+                    <input class="form-control center-block" type="email" placeholder="Email" data-bind="value: emailToSendTo, valueUpdate: 'afterkeydown'" />
+                <form class="form-group form-inline text-center">
+                    <button type="button" class="btn btn-default form-control" data-dismiss="modal">Close</button>
+                    <!--Button for a VALID email-->
+                    <button class="btn btn-primary form-control" data-bind="click: $root.emailNote, visible: emailToSendTo.isValid()">
+                        Send
+                    </button>
+                    <!--Button for an INVALID email-->
+                    <button type="button" class="btn btn-default form-control" data-bind="visible: !emailToSendTo.isValid()" id="button-disabled">
+                        Send
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+    <!--File Attach Modal-->
+    <div class="modal fade attach-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <h4 class="text-center">Attach a file to this note?</h4>
+                
+                <div class="form-group text-center well">
+                    <label for="myInputFile">WebNotes File Input</label>
+                    <input type="file"
+                           data-bind="file: {data: fileInput, name: fileName, reader: someReader}">
+                    <h1 data-bind="text: fileName"></h1>
+                </div>
+
+                <form class="form-group form-inline text-center">
+                    <button type="button" class="btn btn-default form-control" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary form-control" data-bind="click: $root.uploadFileAttachment">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

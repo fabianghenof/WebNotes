@@ -165,6 +165,28 @@ namespace IdentityCoreProject.Controllers
             return Ok();
         }
 
+        [HttpGet("getFileType")]
+        public async Task<IActionResult> GetFileType(int fileId)
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            var file = _context.FileAttachments
+                .Where(x => x.User == user)
+                .FirstOrDefault(x => x.Id == fileId);
+            return Json(file.Type);
+        }
+
+        [HttpGet("getFileData")]
+        public async Task<IActionResult> GetFileData(int fileId)
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            var file = _context.FileAttachments
+                .Where(x => x.User == user)
+                .FirstOrDefault(x => x.Id == fileId);
+            return Json(file.FileData);
+        }
+
         [HttpGet]
         public FileResult DownloadNotes()
         {

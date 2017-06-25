@@ -23,11 +23,17 @@
         self.noteToAttachFileTo = ko.observable();
         self.deleteClickedOnce = ko.observable(false);
 
+        self.fileType = ko.observable();
+        self.fileData = ko.observable();
+
         self.fileInput = ko.observable();
         self.fileName = ko.observable();
         self.someReader = new FileReader();
 
-        //Functions
+       //Functions
+       self.computedFileAttachment = ko.computed(function () {
+           return self.fileType() + ',' + self.fileData();
+       }, this);
         self.initializeMovingArrowsVisibility = function () {
 
             $.get('getSortingOption', self.sortingOption).then(function () {
@@ -43,7 +49,7 @@
         };
         self.getWebNotesData = function (webnotes) {
             $.get('getWebNotes', { webnotes: webnotes }, function (data) {
-                console.clear();
+                console.log('test');
                 var observableData = {
                     notes: ko.observableArray(data.notes.map(function (note) {
                         note.isEditable = ko.observable(false);
@@ -205,6 +211,11 @@
         self.uploadFileAttachment = function () {
             $.post('uploadFileAttachment', { noteToAttachTo: self.noteToAttachFileTo(), file: self.fileInput })
                 .then(function () { location.reload(); });
+        };
+        self.showFileAttachment = function (fileId) {
+            $.get('getFileType', { fileId: fileId }, self.fileType)
+                .then(function () { $.get('getFileData', { fileId: fileId }, self.fileData); });
+            
         };
 
         self.initializeMovingArrowsVisibility();

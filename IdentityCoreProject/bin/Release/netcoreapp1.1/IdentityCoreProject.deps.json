@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "700f03e6a017f8cb6fc08e24df4fb94817ee142a"
+    "signature": "5874ba59e37ed04105e1facff81ff85bb082b37f"
   },
   "compilationOptions": {
     "defines": [
@@ -43,7 +43,7 @@
           "Microsoft.VisualStudio.Web.BrowserLink": "1.1.2",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "1.1.1",
           "RazorLight.MVC": "1.0.4",
-          "AutoMapper": "6.0.2",
+          "AutoMapper": "6.1.0",
           "knockoutjs": "3.4.2",
           "MailKit": "1.16.1",
           "Microsoft.Azure.KeyVault": "2.0.6",
@@ -56,7 +56,7 @@
           "IdentityCoreProject.dll": {}
         }
       },
-      "automapper/6.0.2": {
+      "automapper/6.1.0": {
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
           "System.Collections": "4.3.0",
@@ -86,7 +86,7 @@
       },
       "automapper.extensions.microsoft.dependencyinjection/2.0.1": {
         "dependencies": {
-          "AutoMapper": "6.0.2",
+          "AutoMapper": "6.1.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.1",
           "Microsoft.Extensions.DependencyModel": "1.1.2"
         },
@@ -3784,12 +3784,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "automapper/6.0.2": {
+    "automapper/6.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-uI4uPyibgP4+2zn21fVqy0ep+eYeB5IcfjanyUESj+F0qcrOYpAW4iH2+xKET0vfhgJn4U1c4xN3stKUhygTmQ==",
-      "path": "automapper/6.0.2",
-      "hashPath": "automapper.6.0.2.nupkg.sha512"
+      "sha512": "sha512-ru/p4rBwLH2CGSdlk0Bj6UZQeFpgIDT3sQNL5EEaVhrAT1qNd4SUEOjSzFRBAZbIgIHhifrZ9MbR5BMWgP1vsQ==",
+      "path": "automapper/6.1.0",
+      "hashPath": "automapper.6.1.0.nupkg.sha512"
     },
     "automapper.extensions.microsoft.dependencyinjection/2.0.1": {
       "type": "package",
@@ -3836,14 +3836,14 @@
     "microsoft.aspnetcore.authentication/1.1.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-eAwmuQpfQKxRqfeMOtVKR+f9+54EeVR/YJ36G0ST9NjL2NBDI4cxGZk5nTkk/M2hSaDJUSJlYWrt316sPf9UsQ==",
+      "sha512": "sha512-nG9AcO8Do23L/KcQayxx0r11wEPjB303TCV/0pqE8j3q1eMcamThFDQ3RtD/qXwk0rmMbyP3zGgZ+5I8TSLvCQ==",
       "path": "microsoft.aspnetcore.authentication/1.1.2",
       "hashPath": "microsoft.aspnetcore.authentication.1.1.2.nupkg.sha512"
     },
     "microsoft.aspnetcore.authentication.cookies/1.1.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-YjJ5u2ybrepS8K6pkAZjg8gsMJin/ZpGWGGRLS4hAwkAMAkDaajbZ1K/2zONaG/DwxXIB/h1bD6oUbMBu6B5YA==",
+      "sha512": "sha512-oqcuY3+r/vuanOnM1LulYMq3HJk7AGIxYYcmC6qRfLt2aEUQLzpwsgA3wYj456XbzNSXf51hu0m+fjj/V2LsVQ==",
       "path": "microsoft.aspnetcore.authentication.cookies/1.1.2",
       "hashPath": "microsoft.aspnetcore.authentication.cookies.1.1.2.nupkg.sha512"
     },
@@ -3885,7 +3885,7 @@
     "microsoft.aspnetcore.cryptography.keyderivation/1.1.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tvdVVC6hJ2fuwvOtTAmkFmMU2ru85v1uEmdnknW9Jj8MmVBAznqiLXOQkgKRXpxIEXBcYeMSgLlnQgNA5lrIUg==",
+      "sha512": "sha512-LG4cN68fvL151M/+sVfOl3DkLe8a/GPSHnQtde/8hth7Najpb64ZQE3q0WRvhflc8GzStdNWmxb8Sx3j3PWliQ==",
       "path": "microsoft.aspnetcore.cryptography.keyderivation/1.1.2",
       "hashPath": "microsoft.aspnetcore.cryptography.keyderivation.1.1.2.nupkg.sha512"
     },
@@ -3920,7 +3920,7 @@
     "microsoft.aspnetcore.diagnostics.entityframeworkcore/1.1.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-jYZLL915kSpir+MzKSCOqYG/sOKDMV0RIckkTRZrobuy7n7QUN9hfwvGWB7dKQ48qc0zNSMufUp/7Bn1irX9oA==",
+      "sha512": "sha512-AmxoIViWS7lqPLN96W7lXTW2bcO4YEqUNw/v/6crE1Nx+4d6BeldYjqtB8xnScmZqp1Hdiq7CEDUmGngPtUEdQ==",
       "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/1.1.2",
       "hashPath": "microsoft.aspnetcore.diagnostics.entityframeworkcore.1.1.2.nupkg.sha512"
     },
@@ -3990,14 +3990,14 @@
     "microsoft.aspnetcore.identity/1.1.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-43SmFnKVO6M/VrAdktbkwc3zNO+wj7Se17XeyHdiTquBx4RY17/quTdpzvlm8+QcW/K/VKH4nfwoIsKR9saS9g==",
+      "sha512": "sha512-OwKAA/0j+T5zOC1NkQLq1aqIh+K7AfYRktwqZ1UxVYoAd5wqvR2YQ8PXskAL7gG7+02UoOVlMAQrbBTg0efg6A==",
       "path": "microsoft.aspnetcore.identity/1.1.2",
       "hashPath": "microsoft.aspnetcore.identity.1.1.2.nupkg.sha512"
     },
     "microsoft.aspnetcore.identity.entityframeworkcore/1.1.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-o3OSTMr1baxC4/B4U3ylSIT69nIJmX5jrMowTq+K7eQcgPrpV5VOUx/AZg3h0vdipzcBYyWOw4zbiVYr2ThtGQ==",
+      "sha512": "sha512-oB0t/RrmnVFcKMWvlCsicvElx96sHRSp+ruas5V+/OQqy97HMVAMoYJW1zRHY73pA1Dra4V+IaBGpFUeS1/o+Q==",
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/1.1.2",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.1.1.2.nupkg.sha512"
     },
@@ -4319,7 +4319,7 @@
     "microsoft.extensions.configuration.usersecrets/1.1.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Z1XXlTaBNmqf2T5fjuHlcmpexmx/sJkQTcGxM8TG2SZ0KLvxgWppthbgLLSh1OTy2gyMQPEUXiiTdXcPKKHCiA==",
+      "sha512": "sha512-YIy96i+3yxH/HjhX7eNy7lpWRhW2ZzaGyhSpYlg92iYX5BfHSmwUgXnKQ7T2zu3WC8UMlO+r8JwnqXtBsEXIoQ==",
       "path": "microsoft.extensions.configuration.usersecrets/1.1.2",
       "hashPath": "microsoft.extensions.configuration.usersecrets.1.1.2.nupkg.sha512"
     },

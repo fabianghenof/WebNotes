@@ -92,10 +92,8 @@
                         </div>
                         <button class="btn btn-success" data-bind="visible: isEditable, click: $root.saveNote.bind(this)"><i class="glyphicon glyphicon-check"></i></button>
                     </td>
-                    <td><a data-bind="visible: fileId > 0"><i class="glyphicon glyphicon-paperclip"></i></a>
-                    
-                    </td>
-                <tr data-bind="visible: false"><td></td></tr>
+                    <td><a data-bind="visible: hasFile, click: $root.showFileAttachment.bind(this, fileId)" data-toggle="modal" data-target=".attachment-modal"><i class="glyphicon glyphicon-paperclip"></i></a></td>
+
             </tbody>
         </table>
     </div>
@@ -137,6 +135,15 @@
                     <button type="button" class="btn btn-default form-control" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary form-control" data-bind="click: $root.uploadFileAttachment">Upload</button>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!--File Attachment view modal-->
+    <div class="modal fade attachment-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-lg text-center" role="img">
+            <div class="modal-content">
+                <img data-bind="attr: {src: $root.computedFileAttachment}" />
             </div>
         </div>
     </div>

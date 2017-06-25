@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="IIS Web Application Name" description="" value="IdentityCoreProject20170608041442" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Fabi\\Documents\\Visual\ Studio\ 2017\\Projects\\IdentityCoreProject\ -\ with\ Knockout\\IdentityCoreProject\\obj\\Release\\netcoreapp1\.1\\PubTmp\\Out\\$" />
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Fabi\\Desktop\\WebNotes-with-IdentityCore-master\\IdentityCoreProject\\obj\\Release\\netcoreapp1\.1\\PubTmp\\Out\\$" />
   </parameter>
   <parameter name="IdentityCoreProject.Data.ApplicationDbContext" description="" value="Data Source=tcp:identitycoreproject20170608041442dbserver.database.windows.net,1433;Initial Catalog=IdentityCoreProject20170608041442_db;User Id=fabian.ghenof@identitycoreproject20170608041442dbserver;Password=Xconta2295@" tags="dbfullsql">
-    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^C:\\Users\\Fabi\\Documents\\Visual\ Studio\ 2017\\Projects\\IdentityCoreProject\ -\ with\ Knockout\\IdentityCoreProject\\obj\\Release\\netcoreapp1\.1\\PubTmp\\EFSQLScripts\\IdentityCoreProject\.Data\.ApplicationDbContext\.sql$" />
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^C:\\Users\\Fabi\\Desktop\\WebNotes-with-IdentityCore-master\\IdentityCoreProject\\obj\\Release\\netcoreapp1\.1\\PubTmp\\EFSQLScripts\\IdentityCoreProject\.Data\.ApplicationDbContext\.sql$" />
   </parameter>
 </parameters>

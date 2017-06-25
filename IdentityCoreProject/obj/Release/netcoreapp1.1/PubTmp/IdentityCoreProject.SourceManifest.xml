@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="C:\Users\Fabi\Documents\Visual Studio 2017\Projects\IdentityCoreProject - with Knockout\IdentityCoreProject\obj\Release\netcoreapp1.1\PubTmp\Out\" />
-  <dbfullsql path="C:\Users\Fabi\Documents\Visual Studio 2017\Projects\IdentityCoreProject - with Knockout\IdentityCoreProject\obj\Release\netcoreapp1.1\PubTmp\EFSQLScripts\IdentityCoreProject.Data.ApplicationDbContext.sql" />
+  <IisApp path="C:\Users\Fabi\Desktop\WebNotes-with-IdentityCore-master\IdentityCoreProject\obj\Release\netcoreapp1.1\PubTmp\Out\" />
+  <dbfullsql path="C:\Users\Fabi\Desktop\WebNotes-with-IdentityCore-master\IdentityCoreProject\obj\Release\netcoreapp1.1\PubTmp\EFSQLScripts\IdentityCoreProject.Data.ApplicationDbContext.sql" />
 </sitemanifest>

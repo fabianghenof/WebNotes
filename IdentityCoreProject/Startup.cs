@@ -101,22 +101,22 @@ namespace IdentityCoreProject
 
             app.UseIdentity();
 
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseFacebookAuthentication(new FacebookOptions()
-            //    {
-            //        AppId = Configuration["Authentication:Facebook:AppId"],
-            //        AppSecret = Configuration["Authentication:Facebook:AppSecret"]
-            //    });
-            //}
-            //else
-            //{
-            //    app.UseFacebookAuthentication(new FacebookOptions()
-            //    {
-            //        AppId = Environment.GetEnvironmentVariable("fbAppId"),
-            //        AppSecret = Environment.GetEnvironmentVariable("fbAppSecret")
-            //    });
-            //}
+            if (env.IsDevelopment())
+            {
+                app.UseFacebookAuthentication(new FacebookOptions()
+                {
+                    AppId = Configuration["Authentication:Facebook:AppId"],
+                    AppSecret = Configuration["Authentication:Facebook:AppSecret"]
+                });
+            }
+            else
+            {
+                app.UseFacebookAuthentication(new FacebookOptions()
+                {
+                    AppId = Environment.GetEnvironmentVariable("fbAppId"),
+                    AppSecret = Environment.GetEnvironmentVariable("fbAppSecret")
+                });
+            }
 
             app.UseMvc(routes =>
             {

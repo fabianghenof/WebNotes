@@ -99,7 +99,7 @@
     </div>
     <!--Email Modal-->
     <div class="modal fade email-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-dialog modal-sm" role="menubar">
             <div class="modal-content">
                 <h4 class="text-center">Email this note to someone?</h4>
                     <input class="form-control center-block" type="email" placeholder="Email" data-bind="value: emailToSendTo, valueUpdate: 'afterkeydown'" />
@@ -120,7 +120,7 @@
    
     <!--File Attach Modal-->
     <div class="modal fade attach-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-dialog modal-sm" role="menubar">
             <div class="modal-content">
                 <h4 class="text-center">Attach a file to this note?</h4>
                 
@@ -128,7 +128,6 @@
                     <label for="myInputFile">WebNotes File Input</label>
                     <input type="file"
                            data-bind="file: {data: fileInput, name: fileName, reader: someReader}">
-                    <h1 data-bind="text: fileName"></h1>
                 </div>
 
                 <form class="form-group form-inline text-center">
@@ -141,9 +140,8 @@
 
     <!--File Attachment view modal-->
     <div class="modal fade attachment-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog text-center modal-lg" role="img">
+        <div class="modal-dialog text-center modal-lg" role="img" >
             <div class="modal-content">
-                <a><i class="glyphicon glyphicon-remove pull-right" data-dismiss="modal"></i></a>
                 <img data-bind="attr: {src: $root.computedFileAttachment}" class="img-responsive center-block" />
             </div>
         </div>

@@ -48,3 +48,13 @@ C:\Users\Fabi\Documents\Visual Studio 2017\Projects\WebNotes-with-IdentityCore-m
 C:\Users\Fabi\Documents\Visual Studio 2017\Projects\WebNotes-with-IdentityCore-master\IdentityCoreProject\obj\Debug\netcoreapp1.1\IdentityCoreProject.pdb
 C:\Users\Fabi\Desktop\WebNotes-with-IdentityCore-master\IdentityCoreProject\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs
 C:\Users\Fabi\Desktop\WebNotes-with-IdentityCore-master\IdentityCoreProject\obj\Debug\netcoreapp1.1\IdentityCoreProject.csprojResolveAssemblyReference.cache
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\bin\Debug\netcoreapp1.1\IdentityCoreProject.deps.json
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\bin\Debug\netcoreapp1.1\IdentityCoreProject.runtimeconfig.json
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\bin\Debug\netcoreapp1.1\IdentityCoreProject.runtimeconfig.dev.json
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\bin\Debug\netcoreapp1.1\IdentityCoreProject.dll
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\bin\Debug\netcoreapp1.1\IdentityCoreProject.pdb
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\obj\Debug\netcoreapp1.1\IdentityCoreProject.csprojResolveAssemblyReference.cache
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\obj\Debug\netcoreapp1.1\IdentityCoreProject.AssemblyInfo.cs
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\obj\Debug\netcoreapp1.1\IdentityCoreProject.dll
+C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\obj\Debug\netcoreapp1.1\IdentityCoreProject.pdb

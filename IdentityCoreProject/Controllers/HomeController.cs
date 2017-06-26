@@ -42,7 +42,7 @@ namespace IdentityCoreProject.Controllers
             var sortingOption = _webNoteService.GetUsersSortingOption(userId);
             var webnotes = _webNoteService.GetUsersNotes(userId, sortingOption);
 
-            if(sortingOption == "byDate")
+            if(sortingOption == "byDate" || sortingOption == null)
             {
                 for (int i = 0; i < webnotes.Count(); i++)
                 {

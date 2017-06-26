@@ -31,8 +31,8 @@
         self.someReader = new FileReader();
 
        //Functions
-       self.computedFileAttachment = ko.computed(function () {
-           return self.fileType() + ',' + self.fileData();
+        self.computedFileAttachment = ko.computed(function () {
+                return self.fileType() + ',' + self.fileData();
        }, this);
         self.initializeMovingArrowsVisibility = function () {
 
@@ -44,17 +44,18 @@
                     case 'byDate':
                         self.sortedByPriority(false);
                         break;
+                    default:
+                        self.sortedByPriority(false);
+                        break;
                 }
             });
         };
         self.getWebNotesData = function (webnotes) {
             $.get('getWebNotes', { webnotes: webnotes }, function (data) {
-                console.log('test');
                 var observableData = {
                     notes: ko.observableArray(data.notes.map(function (note) {
                         note.isEditable = ko.observable(false);
                         note.deleteClickedOnce = ko.observable(false);
-                        console.log(note);
                         return note;
                     }))
                 };

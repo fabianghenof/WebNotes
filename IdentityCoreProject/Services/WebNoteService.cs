@@ -24,11 +24,11 @@ namespace IdentityCoreProject.Services
         private readonly IHostingEnvironment _hostingEnvironment;
 
         public WebNoteService
-            (ApplicationDbContext context, 
+            (ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
             IMapper mapper,
             IHostingEnvironment hostingEnvironment)
-            
+
         {
             _context = context;
             _userManager = userManager;
@@ -38,7 +38,7 @@ namespace IdentityCoreProject.Services
 
         public List<WebNote> GetUsersNotes(string userId, string sortingOption)
         {
-            if(sortingOption == "byPriority")
+            if (sortingOption == "byPriority")
             {
                 var notesByPriority = userId == null ? new List<WebNote>() : _context.WebNotes
                 .Where(n => n.UserId == userId)
@@ -107,12 +107,13 @@ namespace IdentityCoreProject.Services
             _context.Update(toUpdate);
             _context.Add(webNote);
             _context.SaveChanges();
+
         }
-        
+
         public void MoveNoteUp(int idOfClickedNote, string userId)
         {
             var userSortingOption = GetUsersSortingOption(userId);
-            if (userSortingOption == "byDate")
+            if (userSortingOption == "byDate" || userSortingOption == null)
             {
                 var noteClickedOn = _context.WebNotes
                 .Where(x => x.UserId == userId)
@@ -138,7 +139,7 @@ namespace IdentityCoreProject.Services
         public void MoveNoteDown(int idOfClickedNote, string userId)
         {
             var userSortingOption = GetUsersSortingOption(userId);
-            if (userSortingOption == "byDate")
+            if (userSortingOption == "byDate" || userSortingOption == null)
             {
                 var noteClickedOn = _context.WebNotes
                     .Where(x => x.UserId == userId)

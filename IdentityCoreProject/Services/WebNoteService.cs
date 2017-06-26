@@ -4,7 +4,6 @@ using IdentityCoreProject.Data;
 using IdentityCoreProject.Models;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using MimeKit;
 using RazorLight;
@@ -12,7 +11,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 using System.Threading.Tasks;
+using LogLevel = Microsoft.Extensions.Logging.LogLevel;
+
 
 namespace IdentityCoreProject.Services
 {
@@ -233,12 +237,15 @@ namespace IdentityCoreProject.Services
 
         public void AddFileToNote(WebNote noteToAttachTo, byte[] fileData, string fileType, ApplicationUser user)
         {
+            CloudStorageAccount storageAccount = new CloudStorageAccount(
+             new Microsoft.WindowsAzure.Storage.Auth.StorageCredentials(
+                "<storage-account-name>",
+                "<access-key>"), true);
+
             //Create a file / Add it to DB
             var newFileAttachment = new FileAttachment();
             newFileAttachment.User = user;
             newFileAttachment.Name = "File Attachment";
-            newFileAttachment.FileData = fileData;
-            newFileAttachment.Type = fileType;
             _context.FileAttachments.Add(newFileAttachment);
             //Add it to the user
             user.FileAttachments.Add(newFileAttachment);

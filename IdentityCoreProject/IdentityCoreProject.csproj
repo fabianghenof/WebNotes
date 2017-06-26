@@ -75,6 +75,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
     <PackageReference Include="razorlight" Version="1.1.0" />
     <PackageReference Include="RazorLight.MVC" Version="1.0.4" />
+    <PackageReference Include="windowsazure.storage" Version="8.1.4" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.1" />

@@ -7,8 +7,8 @@ namespace IdentityCoreProject.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public byte[] FileData { get; set; }
-        public string Type { get; set; }
+        public long Size { get; set; }
+        public string URI { get; set; }
 
         public string UserId { get; set; }
         [ForeignKey("UserId")]

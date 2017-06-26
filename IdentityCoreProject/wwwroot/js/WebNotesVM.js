@@ -153,6 +153,9 @@
         self.setNoteToAttachFileTo = function (id) {
             $.get('getSingleWebNote', { id: id }, self.noteToAttachFileTo);
         };
+        self.getNoteToAttachFileTo = function () {
+            $.post('getNoteToAttachFileTo', { id: self.noteToAttachFileTo().id });
+        };
         self.emailNote = function () {
             $.post('/sendEmail', { email: self.emailToSendTo(), note: self.noteToEmail() }).then(
                 location.reload()
@@ -209,14 +212,24 @@
                 self.getWebNotesData();
             });
         };
-        self.uploadFileAttachment = function () {
-            $.post('uploadFileAttachment', { noteToAttachTo: self.noteToAttachFileTo(), file: self.fileInput })
-                .then(function () { location.reload(); });
-        };
-        self.showFileAttachment = function (fileId) {
-            $.get('getFileType', { fileId: fileId }, self.fileType)
-                .then(function () { $.get('getFileData', { fileId: fileId }, self.fileData); });
-            
+
+        self.uploadFile = function () {
+            var formdata = new FormData($('#formData')[0]);
+
+            $.ajax({
+                url: "uploadFileAttachment" + $.param({ note: self.noteToAttachFileTo}),
+                type: "POST",
+                data: formdata,
+                mimeTypes: "multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function () {
+                    toastr.success("File uploaded!");
+                    setTimeout(1000);
+                    location.reload();
+                }
+            });
         };
 
         self.initializeMovingArrowsVisibility();

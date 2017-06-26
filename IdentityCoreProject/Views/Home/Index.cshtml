@@ -120,19 +120,12 @@
    
     <!--File Attach Modal-->
     <div class="modal fade attach-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog modal-sm" role="menubar">
-            <div class="modal-content">
+        <div class="modal-dialog modal-lg" role="img">
+            <div class="modal-content text-center">
                 <h4 class="text-center">Attach a file to this note?</h4>
-                
-                <div class="form-group text-center well">
-                    <label for="myInputFile">WebNotes File Input</label>
-                    <input type="file"
-                           data-bind="file: {data: fileInput, name: fileName, reader: someReader}">
-                </div>
-
-                <form class="form-group form-inline text-center">
-                    <button type="button" class="btn btn-default form-control" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary form-control" data-bind="click: $root.uploadFileAttachment">Upload</button>
+                <form action="" id="formData" method="post" enctype="multipart/form-data" class="form-group form-inline">
+                    <input type="file" id="file" name="file" size="10" class="form-control input-group center-block"/>
+                    <input id="uploadbutton" type="button" value="Upload" data-bind="click: $root.uploadFile" class="btn btn-primary"/>
                 </form>
             </div>
         </div>

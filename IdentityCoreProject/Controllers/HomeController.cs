@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 using IdentityCoreProject.Services;
 using System.IO;
 using System;
+using Microsoft.AspNetCore.Http;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace IdentityCoreProject.Controllers
 {
@@ -151,40 +154,11 @@ namespace IdentityCoreProject.Controllers
             return sortingOption;
         }
 
-        [HttpPost("uploadFileAttachment")]
-        public async Task<IActionResult> UploadFileAttachment(WebNote noteToAttachTo, string file)
+        [HttpPost("getNoteToAttachFileTo")]
+        public WebNote GetNoteToAttachFileTo(int id)
         {
-            var note = noteToAttachTo;
-
-            var fileSplit = file.Split(","[0]);
-            var fileTypeHeaders = fileSplit[0];
-            var convertedFile = Convert.FromBase64String(fileSplit[1]);
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-
-            _webNoteService.AddFileToNote(noteToAttachTo, convertedFile, fileTypeHeaders, user);
-            return Ok();
-        }
-
-        [HttpGet("getFileType")]
-        public async Task<IActionResult> GetFileType(int fileId)
-        {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-
-            var file = _context.FileAttachments
-                .Where(x => x.User == user)
-                .FirstOrDefault(x => x.Id == fileId);
-            return Json(file.Type);
-        }
-
-        [HttpGet("getFileData")]
-        public async Task<IActionResult> GetFileData(int fileId)
-        {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-
-            var file = _context.FileAttachments
-                .Where(x => x.User == user)
-                .FirstOrDefault(x => x.Id == fileId);
-            return Json(file.FileData);
+            var webNote = _context.WebNotes.FirstOrDefault(x => x.Id == id);
+            return webNote;
         }
 
         [HttpGet]
@@ -193,9 +167,41 @@ namespace IdentityCoreProject.Controllers
             var userId = _userManager.GetUserId(HttpContext.User);
             var sortingOption = _webNoteService.GetUsersSortingOption(userId);
             var myWebNotes = _webNoteService.GetUsersNotes(userId, sortingOption);
-            var stream  = _webNoteService.DownloadNotes(userId, myWebNotes);
+            var stream = _webNoteService.DownloadNotes(userId, myWebNotes);
 
-            return File(stream, "text/csv", "WebNotes("+ User.Identity.Name +").csv");
+            return File(stream, "text/csv", "WebNotes(" + User.Identity.Name + ").csv");
         }
+
+        [HttpPost("uploadFileAttachment")]
+        public async Task<IActionResult> SaveFile(IFormFile file)
+        {
+            //Set The connection string
+            //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Environment.GetEnvironmentVariable("storageConnectionString"));
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=webnotestorage;AccountKey=I8nWrPfr9NYyUQPGNVm0WROiUHuOkE88bZMrwywfXTJNls1SXXitmqwVEIwQGkuAkc9kL7kOdgn6XHz76Xl9qA==;EndpointSuffix=core.windows.net");
+
+            //Create a blob client
+            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+            //Get a reference to a container
+            CloudBlobContainer container = blobClient.GetContainerReference("files");
+
+            //Get a reference to a blob
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(file.Name);
+
+            //Create or overwrite the blob with the contents of a local files
+            using (var fileStream = file.OpenReadStream())
+            {
+            await blockBlob.UploadFromStreamAsync(fileStream);
+            }
+
+            var newFileAttachment = new FileAttachment();
+            newFileAttachment.Name = blockBlob.Name;
+            newFileAttachment.Size = blockBlob.Properties.Length;
+
+            var note = GetNoteToAttachFileTo();
+            _webNoteService.AddFileToNote();
+
+            return RedirectToAction("Index");
+            }
     }
 }

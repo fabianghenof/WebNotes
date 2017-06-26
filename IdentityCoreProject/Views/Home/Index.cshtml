@@ -141,9 +141,10 @@
 
     <!--File Attachment view modal-->
     <div class="modal fade attachment-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog modal-lg text-center" role="img">
+        <div class="modal-dialog text-center modal-lg" role="img">
             <div class="modal-content">
-                <img data-bind="attr: {src: $root.computedFileAttachment}" />
+                <a><i class="glyphicon glyphicon-remove pull-right" data-dismiss="modal"></i></a>
+                <img data-bind="attr: {src: $root.computedFileAttachment}" class="img-responsive center-block" />
             </div>
         </div>
     </div>

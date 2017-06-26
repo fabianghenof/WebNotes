@@ -55,7 +55,7 @@
                     <i class="glyphicon glyphicon-sort-by-attributes-alt" style="cursor: pointer"></i>
                     </a>
                 </th>
-                <th>Title</th> <th>Content</th> <th>Tools</th> <th>File</th></tr></thead>
+                <th>Title</th> <th>Content</th> <th>Tools</th> <th class="text-center">File</th></tr></thead>
             <tbody data-bind="foreach: notes">
                 <tr>
                     <td class="text-center"><i class="glyphicon glyphicon-bookmark" data-bind="style: {'font-size': '150%', 'color': color}"></i></td>
@@ -92,7 +92,7 @@
                         </div>
                         <button class="btn btn-success" data-bind="visible: isEditable, click: $root.saveNote.bind(this)"><i class="glyphicon glyphicon-check"></i></button>
                     </td>
-                    <td><a data-bind="visible: hasFile, click: $root.showFileAttachment.bind(this, fileId)" data-toggle="modal" data-target=".attachment-modal"><i class="glyphicon glyphicon-paperclip"></i></a></td>
+                    <td class="text-center"><a data-bind="visible: hasFile, click: $root.showFileAttachment.bind(this, fileId)" data-toggle="modal" data-target=".attachment-modal" style="cursor: pointer"><i class="glyphicon glyphicon-paperclip"></i></a></td>
 
             </tbody>
         </table>
@@ -143,6 +143,7 @@
         <div class="modal-dialog text-center modal-lg" role="img" >
             <div class="modal-content">
                 <img data-bind="attr: {src: $root.computedFileAttachment}" class="img-responsive center-block" />
+                <script type="text/plain" data-bind="attr: {src: $root.computedFileAttachment}"></script>
             </div>
         </div>
     </div>

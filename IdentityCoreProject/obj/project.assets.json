@@ -4622,7 +4622,7 @@
       ]
     },
     "Microsoft.AspNetCore.Authentication/1.1.2": {
-      "sha512": "nG9AcO8Do23L/KcQayxx0r11wEPjB303TCV/0pqE8j3q1eMcamThFDQ3RtD/qXwk0rmMbyP3zGgZ+5I8TSLvCQ==",
+      "sha512": "eAwmuQpfQKxRqfeMOtVKR+f9+54EeVR/YJ36G0ST9NjL2NBDI4cxGZk5nTkk/M2hSaDJUSJlYWrt316sPf9UsQ==",
       "type": "package",
       "path": "microsoft.aspnetcore.authentication/1.1.2",
       "files": [
@@ -4635,7 +4635,7 @@
       ]
     },
     "Microsoft.AspNetCore.Authentication.Cookies/1.1.2": {
-      "sha512": "oqcuY3+r/vuanOnM1LulYMq3HJk7AGIxYYcmC6qRfLt2aEUQLzpwsgA3wYj456XbzNSXf51hu0m+fjj/V2LsVQ==",
+      "sha512": "YjJ5u2ybrepS8K6pkAZjg8gsMJin/ZpGWGGRLS4hAwkAMAkDaajbZ1K/2zONaG/DwxXIB/h1bD6oUbMBu6B5YA==",
       "type": "package",
       "path": "microsoft.aspnetcore.authentication.cookies/1.1.2",
       "files": [
@@ -4713,7 +4713,7 @@
       ]
     },
     "Microsoft.AspNetCore.Cryptography.KeyDerivation/1.1.2": {
-      "sha512": "LG4cN68fvL151M/+sVfOl3DkLe8a/GPSHnQtde/8hth7Najpb64ZQE3q0WRvhflc8GzStdNWmxb8Sx3j3PWliQ==",
+      "sha512": "tvdVVC6hJ2fuwvOtTAmkFmMU2ru85v1uEmdnknW9Jj8MmVBAznqiLXOQkgKRXpxIEXBcYeMSgLlnQgNA5lrIUg==",
       "type": "package",
       "path": "microsoft.aspnetcore.cryptography.keyderivation/1.1.2",
       "files": [
@@ -4776,7 +4776,7 @@
       ]
     },
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/1.1.2": {
-      "sha512": "AmxoIViWS7lqPLN96W7lXTW2bcO4YEqUNw/v/6crE1Nx+4d6BeldYjqtB8xnScmZqp1Hdiq7CEDUmGngPtUEdQ==",
+      "sha512": "jYZLL915kSpir+MzKSCOqYG/sOKDMV0RIckkTRZrobuy7n7QUN9hfwvGWB7dKQ48qc0zNSMufUp/7Bn1irX9oA==",
       "type": "package",
       "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/1.1.2",
       "files": [
@@ -4906,7 +4906,7 @@
       ]
     },
     "Microsoft.AspNetCore.Identity/1.1.2": {
-      "sha512": "OwKAA/0j+T5zOC1NkQLq1aqIh+K7AfYRktwqZ1UxVYoAd5wqvR2YQ8PXskAL7gG7+02UoOVlMAQrbBTg0efg6A==",
+      "sha512": "43SmFnKVO6M/VrAdktbkwc3zNO+wj7Se17XeyHdiTquBx4RY17/quTdpzvlm8+QcW/K/VKH4nfwoIsKR9saS9g==",
       "type": "package",
       "path": "microsoft.aspnetcore.identity/1.1.2",
       "files": [
@@ -4919,7 +4919,7 @@
       ]
     },
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore/1.1.2": {
-      "sha512": "oB0t/RrmnVFcKMWvlCsicvElx96sHRSp+ruas5V+/OQqy97HMVAMoYJW1zRHY73pA1Dra4V+IaBGpFUeS1/o+Q==",
+      "sha512": "o3OSTMr1baxC4/B4U3ylSIT69nIJmX5jrMowTq+K7eQcgPrpV5VOUx/AZg3h0vdipzcBYyWOw4zbiVYr2ThtGQ==",
       "type": "package",
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/1.1.2",
       "files": [
@@ -5666,7 +5666,7 @@
       ]
     },
     "Microsoft.Extensions.Configuration.UserSecrets/1.1.2": {
-      "sha512": "YIy96i+3yxH/HjhX7eNy7lpWRhW2ZzaGyhSpYlg92iYX5BfHSmwUgXnKQ7T2zu3WC8UMlO+r8JwnqXtBsEXIoQ==",
+      "sha512": "Z1XXlTaBNmqf2T5fjuHlcmpexmx/sJkQTcGxM8TG2SZ0KLvxgWppthbgLLSh1OTy2gyMQPEUXiiTdXcPKKHCiA==",
       "type": "package",
       "path": "microsoft.extensions.configuration.usersecrets/1.1.2",
       "files": [
@@ -11474,10 +11474,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Fabi\\Desktop\\WebNotes-with-IdentityCore-master\\IdentityCoreProject\\IdentityCoreProject.csproj",
+      "projectUniqueName": "C:\\Users\\Fabi\\Documents\\Visual Studio 2017\\Projects\\webnotes\\IdentityCoreProject\\IdentityCoreProject.csproj",
       "projectName": "IdentityCoreProject",
-      "projectPath": "C:\\Users\\Fabi\\Desktop\\WebNotes-with-IdentityCore-master\\IdentityCoreProject\\IdentityCoreProject.csproj",
-      "outputPath": "C:\\Users\\Fabi\\Desktop\\WebNotes-with-IdentityCore-master\\IdentityCoreProject\\obj\\",
+      "projectPath": "C:\\Users\\Fabi\\Documents\\Visual Studio 2017\\Projects\\webnotes\\IdentityCoreProject\\IdentityCoreProject.csproj",
+      "outputPath": "C:\\Users\\Fabi\\Documents\\Visual Studio 2017\\Projects\\webnotes\\IdentityCoreProject\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"

@@ -154,54 +154,40 @@ namespace IdentityCoreProject.Controllers
             return sortingOption;
         }
 
-        [HttpPost("getNoteToAttachFileTo")]
-        public WebNote GetNoteToAttachFileTo(int id)
-        {
-            var webNote = _context.WebNotes.FirstOrDefault(x => x.Id == id);
-            return webNote;
-        }
-
-        [HttpGet]
-        public FileResult DownloadNotes()
-        {
-            var userId = _userManager.GetUserId(HttpContext.User);
-            var sortingOption = _webNoteService.GetUsersSortingOption(userId);
-            var myWebNotes = _webNoteService.GetUsersNotes(userId, sortingOption);
-            var stream = _webNoteService.DownloadNotes(userId, myWebNotes);
-
-            return File(stream, "text/csv", "WebNotes(" + User.Identity.Name + ").csv");
-        }
-
         [HttpPost("uploadFileAttachment")]
-        public async Task<IActionResult> SaveFile(IFormFile file)
+        public async Task<IActionResult> SaveFile(IFormFile file, string fileId, int noteId)
         {
             //Set The connection string
-            //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Environment.GetEnvironmentVariable("storageConnectionString"));
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=webnotestorage;AccountKey=I8nWrPfr9NYyUQPGNVm0WROiUHuOkE88bZMrwywfXTJNls1SXXitmqwVEIwQGkuAkc9kL7kOdgn6XHz76Xl9qA==;EndpointSuffix=core.windows.net");
-
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Environment.GetEnvironmentVariable("storageConnectionString"));
             //Create a blob client
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-
             //Get a reference to a container
             CloudBlobContainer container = blobClient.GetContainerReference("files");
-
             //Get a reference to a blob
-            CloudBlockBlob blockBlob = container.GetBlockBlobReference(file.Name);
-
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(file.FileName);
             //Create or overwrite the blob with the contents of a local files
             using (var fileStream = file.OpenReadStream())
             {
             await blockBlob.UploadFromStreamAsync(fileStream);
             }
 
+            //Sending file to JS
             var newFileAttachment = new FileAttachment();
-            newFileAttachment.Name = blockBlob.Name;
+            newFileAttachment.Name = file.FileName;
             newFileAttachment.Size = blockBlob.Properties.Length;
-
-            var note = GetNoteToAttachFileTo();
-            _webNoteService.AddFileToNote();
+            newFileAttachment.URI  = blockBlob.Uri.ToString();
+            var noteToAttachTo = _context.WebNotes.FirstOrDefault(x => x.Id == noteId);
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            _webNoteService.AddFileToNote(newFileAttachment, noteToAttachTo, user);
 
             return RedirectToAction("Index");
-            }
+        }
+
+        [HttpGet("getSingleFile")]
+        public IActionResult GetSingleFile(int id)
+        {
+            var theFile = _context.FileAttachments.FirstOrDefault(x => x.Id == id);
+            return Json(theFile);
+        }
     }
 }

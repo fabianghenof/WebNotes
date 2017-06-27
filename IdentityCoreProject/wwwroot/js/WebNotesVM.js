@@ -21,19 +21,12 @@
         self.sortingOption = ko.observable();
         self.sortedByPriority = ko.observable();
         self.noteToAttachFileTo = ko.observable();
+        self.noteToAttachFileToId = ko.observable();
         self.deleteClickedOnce = ko.observable(false);
-
-        self.fileType = ko.observable();
-        self.fileData = ko.observable();
-
-        self.fileInput = ko.observable();
-        self.fileName = ko.observable();
-        self.someReader = new FileReader();
+        self.fileToDownload = ko.observable();
+        self.fileToDownloadUri = ko.observable();
 
        //Functions
-        self.computedFileAttachment = ko.computed(function () {
-                return self.fileType() + ',' + self.fileData();
-       }, this);
         self.initializeMovingArrowsVisibility = function () {
 
             $.get('getSortingOption', self.sortingOption).then(function () {
@@ -151,10 +144,10 @@
             $.get('getSingleWebNote', { id: id }, self.noteToEmail);
         };
         self.setNoteToAttachFileTo = function (id) {
-            $.get('getSingleWebNote', { id: id }, self.noteToAttachFileTo);
-        };
-        self.getNoteToAttachFileTo = function () {
-            $.post('getNoteToAttachFileTo', { id: self.noteToAttachFileTo().id });
+            $.get('getSingleWebNote', { id: id }, self.noteToAttachFileTo).then(
+                function () { self.noteToAttachFileToId(self.noteToAttachFileTo().id); }
+            );
+            
         };
         self.emailNote = function () {
             $.post('/sendEmail', { email: self.emailToSendTo(), note: self.noteToEmail() }).then(
@@ -212,12 +205,11 @@
                 self.getWebNotesData();
             });
         };
-
         self.uploadFile = function () {
             var formdata = new FormData($('#formData')[0]);
 
             $.ajax({
-                url: "uploadFileAttachment" + $.param({ note: self.noteToAttachFileTo}),
+                url: "uploadFileAttachment",
                 type: "POST",
                 data: formdata,
                 mimeTypes: "multipart/form-data",
@@ -230,6 +222,14 @@
                     location.reload();
                 }
             });
+        };
+        self.setFileToDownload = function (id) {
+            $.get('getSingleFile', { id: id }, self.fileToDownload).then(
+                function () { self.fileToDownloadUri(self.fileToDownload().uri); }
+            );
+        };
+        self.downloadFileAttachment = function () {
+            $.post('downloadFile', { fileToDownload: self.fileToDownload().Id });
         };
 
         self.initializeMovingArrowsVisibility();

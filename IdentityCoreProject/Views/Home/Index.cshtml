@@ -92,7 +92,7 @@
                         </div>
                         <button class="btn btn-success" data-bind="visible: isEditable, click: $root.saveNote.bind(this)"><i class="glyphicon glyphicon-check"></i></button>
                     </td>
-                    <td class="text-center"><a data-bind="visible: hasFile, click: $root.showFileAttachment.bind(this, fileId)" data-toggle="modal" data-target=".attachment-modal" style="cursor: pointer"><i class="glyphicon glyphicon-paperclip"></i></a></td>
+                    <td class="text-center"><a data-bind="visible: hasFile, click: $root.setFileToDownload.bind(this, fileId)" data-toggle="modal" data-target=".attachment-modal" style="cursor: pointer"><i class="glyphicon glyphicon-paperclip"></i></a></td>
 
             </tbody>
         </table>
@@ -120,12 +120,13 @@
    
     <!--File Attach Modal-->
     <div class="modal fade attach-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog modal-lg" role="img">
+        <div class="modal-dialog" role="img">
             <div class="modal-content text-center">
                 <h4 class="text-center">Attach a file to this note?</h4>
                 <form action="" id="formData" method="post" enctype="multipart/form-data" class="form-group form-inline">
                     <input type="file" id="file" name="file" size="10" class="form-control input-group center-block"/>
                     <input id="uploadbutton" type="button" value="Upload" data-bind="click: $root.uploadFile" class="btn btn-primary"/>
+                    <input type="hidden" data-bind="value: $root.noteToAttachFileToId" id="noteId" name="noteId"/>
                 </form>
             </div>
         </div>
@@ -133,10 +134,13 @@
 
     <!--File Attachment view modal-->
     <div class="modal fade attachment-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog text-center modal-lg" role="img" >
+        <div class="modal-dialog text-center modal-sm" role="document" >
             <div class="modal-content">
-                <img data-bind="attr: {src: $root.computedFileAttachment}" class="img-responsive center-block" />
-                <script type="text/plain" data-bind="attr: {src: $root.computedFileAttachment}"></script>
+                <h3>Download this attachment?</h3>
+                <form class="form-group form-inline">
+                    <button class="btn btn-default form-control" data-dismiss="modal">Close</button>
+                    <a data-bind="attr: {href: $root.fileToDownloadUri}" class="btn btn-primary form-control">Download</a>
+                </form>
             </div>
         </div>
     </div>

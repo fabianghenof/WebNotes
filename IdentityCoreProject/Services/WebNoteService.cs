@@ -235,24 +235,17 @@ namespace IdentityCoreProject.Services
             
         }
 
-        public void AddFileToNote(WebNote noteToAttachTo, byte[] fileData, string fileType, ApplicationUser user)
+        public void AddFileToNote(FileAttachment file, WebNote noteToAttachTo, ApplicationUser user)
         {
-            CloudStorageAccount storageAccount = new CloudStorageAccount(
-             new Microsoft.WindowsAzure.Storage.Auth.StorageCredentials(
-                "<storage-account-name>",
-                "<access-key>"), true);
-
-            //Create a file / Add it to DB
-            var newFileAttachment = new FileAttachment();
-            newFileAttachment.User = user;
-            newFileAttachment.Name = "File Attachment";
-            _context.FileAttachments.Add(newFileAttachment);
+            //Add new file to DB
+            
+            _context.FileAttachments.Add(file);
             //Add it to the user
-            user.FileAttachments.Add(newFileAttachment);
+            user.FileAttachments.Add(file);
             _context.Update(user);
             //Asign it to a webnote
             //var toUpdate = _context.WebNotes.FirstOrDefault(x => x.Id == noteToAttachTo.Id);
-            noteToAttachTo.FileAttachment = newFileAttachment;
+            noteToAttachTo.FileAttachment = file;
             noteToAttachTo.hasFile = true;
             _context.Update(noteToAttachTo);
             _context.SaveChanges();

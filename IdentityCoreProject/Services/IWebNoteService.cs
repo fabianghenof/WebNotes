@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using IdentityCoreProject.Models;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace IdentityCoreProject.Services
 {
     public interface IWebNoteService
     {
         void CreateNote(WebNote webNote, ApplicationUser user);
-        void DeleteNote(int id);
+        Task DeleteNote(int id);
         List<WebNote> GetUsersNotes(string userId, string sortingOption);
         void MoveNoteDown(int idOfClickedNote, string userId);
         void MoveNoteUp(int idOfClickedNote, string userId);

@@ -16,7 +16,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System.Threading.Tasks;
 using LogLevel = Microsoft.Extensions.Logging.LogLevel;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace IdentityCoreProject.Services
 {
@@ -76,13 +76,19 @@ namespace IdentityCoreProject.Services
             _context.SaveChanges();
         }
 
-        public void DeleteNote(int id)
+        public async Task DeleteNote(int id)
         {
+            //Removing file from DB
             var noteToDelete = _context.WebNotes.SingleOrDefault(x => x.Id == id);
             var fileToDelete = _context.FileAttachments.SingleOrDefault(x => x.Id == noteToDelete.FileId);
             _context.WebNotes.Remove(noteToDelete);
-            if (fileToDelete != null) _context.FileAttachments.Remove(fileToDelete);
-            _context.SaveChanges();
+
+            //Removing file from Azure
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Environment.GetEnvironmentVariable("storageConnectionString"));
+            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+            CloudBlobContainer container = blobClient.GetContainerReference("files");
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(fileToDelete.Name);
+            await blockBlob.DeleteAsync();
         }
 
         public void CreateNote(WebNote webNote, ApplicationUser user)

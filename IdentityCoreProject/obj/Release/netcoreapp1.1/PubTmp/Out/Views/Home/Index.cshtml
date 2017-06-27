@@ -92,7 +92,7 @@
                         </div>
                         <button class="btn btn-success" data-bind="visible: isEditable, click: $root.saveNote.bind(this)"><i class="glyphicon glyphicon-check"></i></button>
                     </td>
-                    <td class="text-center"><a data-bind="visible: hasFile, click: $root.setFileToDownload.bind(this, fileId)" data-toggle="modal" data-target=".attachment-modal" style="cursor: pointer"><i class="glyphicon glyphicon-paperclip"></i></a></td>
+                    <td class="text-center"><a data-bind="visible: hasFile, click: $root.setFileToDownload.bind(this, fileId)" data-toggle="modal" data-target=".attachment-modal" style="cursor: pointer"><i class="glyphicon glyphicon-paperclip" title="Click for more info"></i></a></td>
 
             </tbody>
         </table>
@@ -137,6 +137,7 @@
         <div class="modal-dialog text-center modal-sm" role="document" >
             <div class="modal-content">
                 <h3>Download this attachment?</h3>
+                <p data-bind="text: $root.fileToDownloadName"></p>
                 <form class="form-group form-inline">
                     <button class="btn btn-default form-control" data-dismiss="modal">Close</button>
                     <a data-bind="attr: {href: $root.fileToDownloadUri}" class="btn btn-primary form-control">Download</a>

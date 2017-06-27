@@ -25,6 +25,7 @@
         self.deleteClickedOnce = ko.observable(false);
         self.fileToDownload = ko.observable();
         self.fileToDownloadUri = ko.observable();
+        self.fileToDownloadName = ko.observable();
 
        //Functions
         self.initializeMovingArrowsVisibility = function () {
@@ -225,7 +226,10 @@
         };
         self.setFileToDownload = function (id) {
             $.get('getSingleFile', { id: id }, self.fileToDownload).then(
-                function () { self.fileToDownloadUri(self.fileToDownload().uri); }
+                function () {
+                    self.fileToDownloadUri(self.fileToDownload().uri);
+                    self.fileToDownloadName(self.fileToDownload().name);
+                }
             );
         };
         self.downloadFileAttachment = function () {

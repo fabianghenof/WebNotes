@@ -45,6 +45,7 @@ namespace IdentityCoreProject.Controllers
             var sortingOption = _webNoteService.GetUsersSortingOption(userId);
             var webnotes = _webNoteService.GetUsersNotes(userId, sortingOption);
 
+            //Assuring order indexes are correct
             if(sortingOption == "byDate" || sortingOption == null)
             {
                 for (int i = 0; i < webnotes.Count(); i++)
@@ -55,7 +56,6 @@ namespace IdentityCoreProject.Controllers
                     toUpdate.OrderIndex = i;
                     _context.Update(toUpdate);
                     webnotes[i].OrderIndex = i;
-                    //webnotes[i].OrderIndex = i;
                 }
                 _context.SaveChanges();
             }
@@ -96,7 +96,6 @@ namespace IdentityCoreProject.Controllers
         [HttpPost("moveNoteUp")]
         public IActionResult MoveNoteUp(int idOfClickedNote, string userId)
         {
-
             _webNoteService.MoveNoteUp(idOfClickedNote, userId);
             return Ok();
         }

@@ -33,7 +33,6 @@ C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject
 C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.runtimeconfig.dev.json
 C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.dll
 C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\bin\Release\netcoreapp1.1\IdentityCoreProject.pdb
-C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\obj\Release\netcoreapp1.1\IdentityCoreProject.csprojResolveAssemblyReference.cache
 C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\obj\Release\netcoreapp1.1\UserSecretsAssemblyInfo.cs
 C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\obj\Release\netcoreapp1.1\IdentityCoreProject.AssemblyInfo.cs
 C:\Users\Fabi\Documents\Visual Studio 2017\Projects\webnotes\IdentityCoreProject\obj\Release\netcoreapp1.1\IdentityCoreProject.dll

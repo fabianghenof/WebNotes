@@ -232,9 +232,6 @@
                 }
             );
         };
-        self.downloadFileAttachment = function () {
-            $.post('downloadFile', { fileToDownload: self.fileToDownload().Id });
-        };
 
         self.initializeMovingArrowsVisibility();
         self.getWebNotesData();

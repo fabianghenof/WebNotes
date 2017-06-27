@@ -6,3 +6,4 @@
 *.dll
 IdentityCoreProject/obj/Release/netcoreapp1.1/PubTmp/Out/System.Text.Encodings.Web.dll
 *.dll
+.vs/IdentityCoreProject/v15/.suo

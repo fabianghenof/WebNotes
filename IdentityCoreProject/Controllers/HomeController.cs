@@ -189,5 +189,15 @@ namespace IdentityCoreProject.Controllers
             var theFile = _context.FileAttachments.FirstOrDefault(x => x.Id == id);
             return Json(theFile);
         }
+
+        [HttpGet]
+        public FileResult DownloadNotes() {
+              var userId = _userManager.GetUserId(HttpContext.User);
+              var sortingOption = _webNoteService.GetUsersSortingOption(userId);
+              var myWebNotes = _webNoteService.GetUsersNotes(userId, sortingOption);
+              var stream = _webNoteService.DownloadNotes(userId, myWebNotes);
+  
+              return File(stream, "text/csv", "WebNotes("+ User.Identity.Name +").csv");
     }
+}
 }

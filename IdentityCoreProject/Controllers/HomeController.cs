@@ -193,9 +193,9 @@ namespace IdentityCoreProject.Controllers
         }
 
         [HttpPost("deleteFile")]
-        public IActionResult DeleteFile(string fileName)
+        public IActionResult DeleteFile(int fileId)
         {
-            _webNoteService.DeleteFile(fileName);
+            _webNoteService.DeleteFile(fileId);
             return RedirectToAction("Index");
         }
 
@@ -214,6 +214,7 @@ namespace IdentityCoreProject.Controllers
             ExcelPackage ExcelPkg = new ExcelPackage();
             ExcelWorksheet workSheet = ExcelPkg.Workbook.Worksheets.Add("Worksheet");
             int defaultFontSize = 12;
+            Color headersColor = ColorTranslator.FromHtml("#9c9c9c");
 
             //INTRODUCTION WITH USER'S NAME
             using (ExcelRange Range = workSheet.Cells[1, 1, 1, 6])
@@ -231,6 +232,7 @@ namespace IdentityCoreProject.Controllers
                 Range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 Range.Merge = true;
                 Range.Style.Font.Size = defaultFontSize;
+                Range.Style.Font.Color.SetColor(headersColor);
                 Range.Style.Border.Top.Style = ExcelBorderStyle.Thin;
                 Range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
                 Range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
@@ -243,6 +245,7 @@ namespace IdentityCoreProject.Controllers
                 Range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 Range.Merge = true;
                 Range.Style.Font.Size = defaultFontSize;
+                Range.Style.Font.Color.SetColor(headersColor);
                 Range.Style.Border.Top.Style = ExcelBorderStyle.Thin;
                 Range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
                 Range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
@@ -253,6 +256,7 @@ namespace IdentityCoreProject.Controllers
                 Range.Value = "Title";
                 Range.Merge = true;
                 Range.Style.Font.Size = defaultFontSize;
+                Range.Style.Font.Color.SetColor(headersColor);
                 Range.Style.Border.Top.Style = ExcelBorderStyle.Thin;
                 Range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
                 Range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
@@ -263,6 +267,7 @@ namespace IdentityCoreProject.Controllers
                 Range.Value = "Content";
                 Range.Merge = true;
                 Range.Style.Font.Size = defaultFontSize;
+                Range.Style.Font.Color.SetColor(headersColor);
                 Range.Style.Border.Top.Style = ExcelBorderStyle.Thin;
                 Range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
                 Range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;

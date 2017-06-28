@@ -98,20 +98,19 @@ namespace IdentityCoreProject.Services
             }
         }
 
-        public async Task DeleteFile(string fileName)
+        public async Task DeleteFile(int fileId)
         {
+            var theFile = _context.FileAttachments.FirstOrDefault(x => x.Id == fileId);
             //Removing file from Azure
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Environment.GetEnvironmentVariable("storageConnectionString"));
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
             CloudBlobContainer container = blobClient.GetContainerReference("files");
-            CloudBlockBlob blockBlob = container.GetBlockBlobReference(fileName);
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(theFile.Name);
             await blockBlob.DeleteAsync();
 
             //Removing file from DB
-            var theFile = _context.FileAttachments.FirstOrDefault(x => x.Name == fileName);
             var theNoteOfTheFile = _context.WebNotes.FirstOrDefault(x => x.FileId == theFile.Id);
-            theNoteOfTheFile.FileAttachment = null;
-            theNoteOfTheFile.FileId = 0;
+            theNoteOfTheFile.FileAttachment = new FileAttachment();
             theNoteOfTheFile.hasFile = false;
             _context.Update(theNoteOfTheFile);
             _context.FileAttachments.Remove(theFile);

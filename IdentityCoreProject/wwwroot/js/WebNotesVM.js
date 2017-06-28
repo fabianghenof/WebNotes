@@ -26,6 +26,7 @@
         self.fileToDownload = ko.observable();
         self.fileToDownloadUri = ko.observable();
         self.fileToDownloadName = ko.observable();
+        self.fileToDownloadId = ko.observable();
 
        //Functions
         self.initializeMovingArrowsVisibility = function () {
@@ -50,6 +51,7 @@
                     notes: ko.observableArray(data.notes.map(function (note) {
                         note.isEditable = ko.observable(false);
                         note.deleteClickedOnce = ko.observable(false);
+                        console.log(note);
                         return note;
                     }))
                 };
@@ -229,11 +231,12 @@
                 function () {
                     self.fileToDownloadUri(self.fileToDownload().uri);
                     self.fileToDownloadName(self.fileToDownload().name);
+                    self.fileToDownloadId(self.fileToDownload().id);
                 }
             );
         };
         self.deleteFile = function () {
-            $.post('deleteFile', { fileName: self.fileToDownloadName() })
+            $.post('deleteFile', { fileName: self.fileToDownload.id })
                 .then(function () { toastr.info('File atachment deleted!'); });
         };
 

@@ -6,7 +6,21 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <p>Download My WebNotes(<a asp-area="" asp-controller="Home" asp-action="DownloadNotesCsv" id="dld-notes-link">CSV</a>, <a asp-area="" asp-controller="Home" asp-action="DownloadNotesExcel" id="dld-notes-link">XLS</a>)</p>
+    <a href="#" data-trigger="modal" data-toggle="modal" data-target=".downloadNotesModal">Download my WebNotes</a>
+
+    //Download WebNotes Modal
+    <div class="modal fade downloadNotesModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <form class="form-group form-inline text-center">
+                    <h4>Download your WebNotes? :)</h4>
+                    <button class="btn btn-default form-control" data-dismiss="modal">Close</button>
+                    <a asp-area="" asp-controller="Home" asp-action="DownloadNotesCsv" id="dld-notes-link" class="btn btn-primary form-control">.CSV</a>
+                    <a asp-area="" asp-controller="Home" asp-action="DownloadNotesExcel" id="dld-notes-link" class="btn btn-primary form-control">.XLSX</a>
+                </form>
+            </div>
+        </div>
+    </div>
 }
 else
 {

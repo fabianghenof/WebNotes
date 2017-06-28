@@ -12,6 +12,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
+        "storageConnectionString": "DefaultEndpointsProtocol=https;AccountName=webnotestorage;AccountKey=I8nWrPfr9NYyUQPGNVm0WROiUHuOkE88bZMrwywfXTJNls1SXXitmqwVEIwQGkuAkc9kL7kOdgn6XHz76Xl9qA==;EndpointSuffix=core.windows.net",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },

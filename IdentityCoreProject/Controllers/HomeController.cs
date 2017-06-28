@@ -6,11 +6,14 @@ using IdentityCoreProject.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using IdentityCoreProject.Services;
-using System.IO;
-using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using OfficeOpenXml;
+using System.IO;
+using System;
+using OfficeOpenXml.Style;
+using System.Drawing;
 
 namespace IdentityCoreProject.Controllers
 {
@@ -189,14 +192,148 @@ namespace IdentityCoreProject.Controllers
             return Json(theFile);
         }
 
+        [HttpPost("deleteFile")]
+        public IActionResult DeleteFile(string fileName)
+        {
+            _webNoteService.DeleteFile(fileName);
+            return RedirectToAction("Index");
+        }
+
         [HttpGet]
-        public FileResult DownloadNotes() {
+        public FileResult DownloadNotesCsv() {
               var userId = _userManager.GetUserId(HttpContext.User);
               var sortingOption = _webNoteService.GetUsersSortingOption(userId);
               var myWebNotes = _webNoteService.GetUsersNotes(userId, sortingOption);
               var stream = _webNoteService.DownloadNotes(userId, myWebNotes);
   
               return File(stream, "text/csv", "WebNotes("+ User.Identity.Name +").csv");
-    }
+        }
+
+        public FileResult DownloadNotesExcel()
+        {
+            ExcelPackage ExcelPkg = new ExcelPackage();
+            ExcelWorksheet workSheet = ExcelPkg.Workbook.Worksheets.Add("Worksheet");
+            int defaultFontSize = 12;
+
+            //INTRODUCTION WITH USER'S NAME
+            using (ExcelRange Range = workSheet.Cells[1, 1, 1, 6])
+            {
+                Range.Value = "The WebNotes of '"+ User.Identity.Name +"':";
+                Range.Merge = true;
+                Range.Style.Font.Size = defaultFontSize;
+            }
+
+            //TABLE HEADERS
+                ///Index Header
+            using (ExcelRange Range = workSheet.Cells[3, 1, 3, 1])
+            {
+                Range.Value = "#";
+                Range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                Range.Merge = true;
+                Range.Style.Font.Size = defaultFontSize;
+                Range.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                Range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                Range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                Range.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            }
+                ///Priority Header
+            using (ExcelRange Range = workSheet.Cells[3, 2, 3, 2])
+            {
+                Range.Value = "Priority";
+                Range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                Range.Merge = true;
+                Range.Style.Font.Size = defaultFontSize;
+                Range.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                Range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                Range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            }
+                ///Title Header
+            using (ExcelRange Range = workSheet.Cells[3, 3, 3, 4])
+            {
+                Range.Value = "Title";
+                Range.Merge = true;
+                Range.Style.Font.Size = defaultFontSize;
+                Range.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                Range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                Range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            }
+                ///Content Header
+            using (ExcelRange Range = workSheet.Cells[3, 5, 3, 12])
+            {
+                Range.Value = "Content";
+                Range.Merge = true;
+                Range.Style.Font.Size = defaultFontSize;
+                Range.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                Range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                Range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            }
+
+            //Getting the user's notes
+            var userId = _userManager.GetUserId(HttpContext.User);
+            var sortingOption = _webNoteService.GetUsersSortingOption(userId);
+            var theNotes = _webNoteService.GetUsersNotes(userId, sortingOption);
+
+            int currentRow = 4;
+            //Writing notes to Excel
+            for (int i = 0; i < theNotes.Count(); i++)
+            {
+                int rowToWriteAt = i + currentRow;
+                int noteNumber = i + 1;
+                ///Note Index
+                using (ExcelRange Range = workSheet.Cells[rowToWriteAt, 1, rowToWriteAt, 1])
+                {
+                    Range.Value = noteNumber;
+                    Range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    Range.Merge = true;
+                    Range.Style.Font.Size = defaultFontSize;
+                    Range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                    Range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                    Range.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                }
+                ///Note Priority
+                using (ExcelRange Range = workSheet.Cells[rowToWriteAt, 2, rowToWriteAt, 2])
+                {
+                    Color priorityColor = ColorTranslator.FromHtml(theNotes[i].Color);
+                    Range.Value = "O";
+                    Range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    Range.Style.Font.Color.SetColor(priorityColor);
+                    Range.Merge = true;
+                    Range.Style.Font.Size = defaultFontSize;
+                    Range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                    Range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                }
+                ///Note Title
+                using (ExcelRange Range = workSheet.Cells[rowToWriteAt, 3, rowToWriteAt, 4])
+                {
+                    Range.Value = theNotes[i].Title;
+                    Range.Merge = true;
+                    Range.Style.Font.Size = defaultFontSize;
+                    Range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                    Range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                }
+                ///Note Content
+                using (ExcelRange Range = workSheet.Cells[rowToWriteAt, 5, rowToWriteAt, 12])
+                {
+                    Range.Value = theNotes[i].Content;
+                    Range.Merge = true;
+                    Range.Style.Font.Size = defaultFontSize;
+                    Range.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                    Range.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                }
+            }
+
+            //Finishing and creating the Excel file
+            workSheet.Protection.IsProtected = false;
+            workSheet.Protection.AllowSelectLockedCells = false;
+
+            var fileStream = new MemoryStream();
+            ExcelPkg.SaveAs(fileStream);
+            fileStream.Position = 0;
+            var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            var theExcelFile = new FileStreamResult(fileStream, contentType);
+            theExcelFile.FileDownloadName = "WebNotes" + "(" + User.Identity.Name + ")" + ".xlsx";
+
+            return theExcelFile;
+        }
 }
 }

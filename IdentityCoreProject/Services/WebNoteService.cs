@@ -81,14 +81,41 @@ namespace IdentityCoreProject.Services
             //Removing file from DB
             var noteToDelete = _context.WebNotes.SingleOrDefault(x => x.Id == id);
             var fileToDelete = _context.FileAttachments.SingleOrDefault(x => x.Id == noteToDelete.FileId);
+            var fileDeletable = noteToDelete.hasFile;
             _context.WebNotes.Remove(noteToDelete);
+            _context.SaveChanges();
 
+            if (fileDeletable)
+            {
+                _context.FileAttachments.Remove(fileToDelete);
+                _context.SaveChanges();
+                //Removing file from Azure
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Environment.GetEnvironmentVariable("storageConnectionString"));
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+                CloudBlobContainer container = blobClient.GetContainerReference("files");
+                CloudBlockBlob blockBlob = container.GetBlockBlobReference(fileToDelete.Name);
+                await blockBlob.DeleteAsync();
+            }
+        }
+
+        public async Task DeleteFile(string fileName)
+        {
             //Removing file from Azure
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Environment.GetEnvironmentVariable("storageConnectionString"));
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
             CloudBlobContainer container = blobClient.GetContainerReference("files");
-            CloudBlockBlob blockBlob = container.GetBlockBlobReference(fileToDelete.Name);
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(fileName);
             await blockBlob.DeleteAsync();
+
+            //Removing file from DB
+            var theFile = _context.FileAttachments.FirstOrDefault(x => x.Name == fileName);
+            var theNoteOfTheFile = _context.WebNotes.FirstOrDefault(x => x.FileId == theFile.Id);
+            theNoteOfTheFile.FileAttachment = null;
+            theNoteOfTheFile.FileId = 0;
+            theNoteOfTheFile.hasFile = false;
+            _context.Update(theNoteOfTheFile);
+            _context.FileAttachments.Remove(theFile);
+            _context.SaveChanges();
         }
 
         public void CreateNote(WebNote webNote, ApplicationUser user)

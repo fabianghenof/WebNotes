@@ -232,6 +232,10 @@
                 }
             );
         };
+        self.deleteFile = function () {
+            $.post('deleteFile', { fileName: self.fileToDownloadName() })
+                .then(function () { toastr.info('File atachment deleted!'); });
+        };
 
         self.initializeMovingArrowsVisibility();
         self.getWebNotesData();

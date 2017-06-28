@@ -232,8 +232,9 @@
                 }
             );
         };
-        self.downloadFileAttachment = function () {
-            $.post('downloadFile', { fileToDownload: self.fileToDownload().Id });
+        self.deleteFile = function () {
+            $.post('deleteFile', { fileName: self.fileToDownloadName() })
+                .then(function () { toastr.info('File atachment deleted!'); });
         };
 
         self.initializeMovingArrowsVisibility();

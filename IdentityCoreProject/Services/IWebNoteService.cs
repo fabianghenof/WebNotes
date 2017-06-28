@@ -9,6 +9,7 @@ namespace IdentityCoreProject.Services
     {
         void CreateNote(WebNote webNote, ApplicationUser user);
         Task DeleteNote(int id);
+        Task DeleteFile(string fileName);
         List<WebNote> GetUsersNotes(string userId, string sortingOption);
         void MoveNoteDown(int idOfClickedNote, string userId);
         void MoveNoteUp(int idOfClickedNote, string userId);

@@ -6,7 +6,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <a asp-area="" asp-controller="Home" asp-action="DownloadNotes" id="dld-notes-link">Download my WebNotes</a>
+    <p>Download My WebNotes(<a asp-area="" asp-controller="Home" asp-action="DownloadNotesCsv" id="dld-notes-link">CSV</a>, <a asp-area="" asp-controller="Home" asp-action="DownloadNotesExcel" id="dld-notes-link">XLS</a>)</p>
 }
 else
 {

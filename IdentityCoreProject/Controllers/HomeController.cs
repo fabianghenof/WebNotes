@@ -196,7 +196,7 @@ namespace IdentityCoreProject.Controllers
         public IActionResult DeleteFile(int fileId)
         {
             _webNoteService.DeleteFile(fileId);
-            return RedirectToAction("Index");
+            return Ok();
         }
 
         [HttpGet]

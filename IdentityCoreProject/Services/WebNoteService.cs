@@ -100,7 +100,18 @@ namespace IdentityCoreProject.Services
 
         public async Task DeleteFile(int fileId)
         {
-            var theFile = _context.FileAttachments.FirstOrDefault(x => x.Id == fileId);
+            //Removing file from DB
+            FileAttachment theFile = _context.FileAttachments.FirstOrDefault(x => x.Id == fileId);
+            WebNote theNoteOfTheFile = _context.WebNotes.SingleOrDefault(x => x.FileId == fileId);
+            //theNoteOfTheFile.FileId = 0;
+            theNoteOfTheFile.hasFile = false;
+            _context.Update(theNoteOfTheFile);
+            theFile.URI = "";
+            theFile.Name = "";
+            theFile.Size = 0;
+            _context.Update(theFile);
+            _context.SaveChanges();
+
             //Removing file from Azure
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Environment.GetEnvironmentVariable("storageConnectionString"));
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
@@ -108,13 +119,7 @@ namespace IdentityCoreProject.Services
             CloudBlockBlob blockBlob = container.GetBlockBlobReference(theFile.Name);
             await blockBlob.DeleteAsync();
 
-            //Removing file from DB
-            var theNoteOfTheFile = _context.WebNotes.FirstOrDefault(x => x.FileId == theFile.Id);
-            theNoteOfTheFile.FileAttachment = new FileAttachment();
-            theNoteOfTheFile.hasFile = false;
-            _context.Update(theNoteOfTheFile);
-            _context.FileAttachments.Remove(theFile);
-            _context.SaveChanges();
+            
         }
 
         public void CreateNote(WebNote webNote, ApplicationUser user)
@@ -278,6 +283,7 @@ namespace IdentityCoreProject.Services
             //Asign it to a webnote
             //var toUpdate = _context.WebNotes.FirstOrDefault(x => x.Id == noteToAttachTo.Id);
             noteToAttachTo.FileAttachment = file;
+            noteToAttachTo.FileId = file.Id;
             noteToAttachTo.hasFile = true;
             _context.Update(noteToAttachTo);
             _context.SaveChanges();

@@ -26,7 +26,8 @@
         self.fileToDownload = ko.observable();
         self.fileToDownloadUri = ko.observable();
         self.fileToDownloadName = ko.observable();
-        self.fileToDownloadId = ko.observable();
+        self.fileToDownloadId = ko.observable(0);
+        self.somethingIsBeingEdited = ko.observable(false);
 
        //Functions
         self.initializeMovingArrowsVisibility = function () {
@@ -51,12 +52,16 @@
                     notes: ko.observableArray(data.notes.map(function (note) {
                         note.isEditable = ko.observable(false);
                         note.deleteClickedOnce = ko.observable(false);
-                        console.log(note);
                         return note;
                     }))
                 };
                 self.webNotesData(observableData);
             });
+            if (self.somethingIsBeingEdited() === true)
+            {
+                console.log('should be working');
+                self.somethingIsBeingEdited(false);
+            }
         };
         self.submitNote = function () {
             var newNote = new Note();
@@ -130,7 +135,6 @@
         };
         self.removeNote = function (idToDelete, note) {
             event.preventDefault();
-            $('#delete-note-popover').text('?');
             if (note.deleteClickedOnce() === true) {
                 $.post("deleteNote", { id: idToDelete }).then(function () {
                     toastr.error('WebNote ' + idToDelete + ' deleted');
@@ -140,7 +144,7 @@
             else {
                 note.deleteClickedOnce(true);
                 toastr.warning('Click again to confirm deletion');
-                setTimeout(function () { note.deleteClickedOnce(false); }, 2000);
+                setTimeout(function () { note.deleteClickedOnce(false); }, 4000);
             }
         };
         self.setNoteToEmail = function (id) {
@@ -161,6 +165,7 @@
             self.noteTitle(note.title);
             self.noteContent(note.content);
             note.isEditable(!note.isEditable());
+            self.somethingIsBeingEdited(true);
         };
         self.saveNote = function (note) {
             document.body.style.cursor = 'wait';
@@ -168,6 +173,7 @@
                 $.post('updateNoteTitle', { id: note.id, title: self.noteTitle() }).then(function () {
                     self.getWebNotesData();
                     document.body.style.cursor = 'default';
+                    self.somethingIsBeingEdited(false);
                     toastr.success('WebNote successfully updated!');
                 });
             });
@@ -229,6 +235,7 @@
         self.setFileToDownload = function (id) {
             $.get('getSingleFile', { id: id }, self.fileToDownload).then(
                 function () {
+                    console.log(self.fileToDownload());
                     self.fileToDownloadUri(self.fileToDownload().uri);
                     self.fileToDownloadName(self.fileToDownload().name);
                     self.fileToDownloadId(self.fileToDownload().id);
@@ -236,8 +243,8 @@
             );
         };
         self.deleteFile = function () {
-            $.post('deleteFile', { fileName: self.fileToDownload.id })
-                .then(function () { toastr.info('File atachment deleted!'); });
+            $.post('deleteFile', { fileId: self.fileToDownloadId })
+                .then(function () { location.reload(); });
         };
 
         self.initializeMovingArrowsVisibility();

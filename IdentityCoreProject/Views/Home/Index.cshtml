@@ -68,29 +68,32 @@
                     <td data-bind="visible: isEditable"><textarea rows="3" data-bind="value: $root.noteContent" class="form-control"></textarea></td>
                     <td>
                         <!--Note Tool Buttons-->
-                        <div class="btn-group btn-group-sm">
-                            <button class="btn btn-info" data-bind="click: $root.EditNote.bind(this), visible: !(isEditable())"><i class="glyphicon glyphicon-edit" id="font-bigger"></i></button>
+                        <div class="btn-group btn-group-sm" data-bind="visible: !($root.somethingIsBeingEdited())">
+                            <button class="btn btn-info" data-bind="click: $root.EditNote.bind(this)" title="Edit this WebNote"><i class="glyphicon glyphicon-edit" id="font-bigger"></i></button>
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target=".email-modal"
-                                    data-bind="visible: !(isEditable()), click: function () { $root.setNoteToEmail(id);}">
+                                    data-bind="visible: !(isEditable()), click: function () { $root.setNoteToEmail(id);}" title="Email this WebNote">
                                 <i class="glyphicon glyphicon-envelope font-bigger"></i>
                             </button>
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target=".attach-modal"
-                                    data-bind="visible: !(isEditable()), click: $root.setNoteToAttachFileTo.bind(this, id)">
+                                    data-bind="visible: !(isEditable()), click: $root.setNoteToAttachFileTo.bind(this, id)" title="Attach a file to this WebNote">
                                 <i class="glyphicon glyphicon-file"></i>
                             </button>
                         </div>
                         <!--Note Move Up/Down Buttons-->
                         <div class="btn-group btn-group-sm" data-bind="visible: !($root.sortedByPriority())">
-                            <button class="btn btn-default" data-bind="click: $root.moveNoteUp.bind(this), visible: !(isEditable())"><i class="glyphicon glyphicon-arrow-up"></i></button>
-                            <button class="btn btn-default" data-bind="click: $root.moveNoteDown.bind(this), visible: !(isEditable())"><i class="glyphicon glyphicon-arrow-down"></i></button>
+                            <button class="btn btn-default" data-bind="click: $root.moveNoteUp.bind(this), visible: !($root.somethingIsBeingEdited())" title="Move WebNote up"><i class="glyphicon glyphicon-arrow-up"></i></button>
+                            <button class="btn btn-default" data-bind="click: $root.moveNoteDown.bind(this), visible: !($root.somethingIsBeingEdited())" title="Move WebNote down"><i class="glyphicon glyphicon-arrow-down"></i></button>
                         </div>
                         <!--Note Delete Button-->
-                        <div class="btn-group btn-group-sm">
-                            <button class="btn btn-danger" data-bind="click: $root.removeNote.bind(this, id), visible: !(isEditable())">
+                        <div class="btn-group btn-group-sm" data-bind="visible: !($root.somethingIsBeingEdited())">
+                            <button class="btn btn-danger" data-bind="click: $root.removeNote.bind(this, id), visible: !(isEditable())" title="Delete this WebNote">
                                 <i class="glyphicon glyphicon-remove"></i><p data-bind="visible: $root.deleteClickedOnce">ads</p>
                             </button>
                         </div>
-                        <button class="btn btn-success" data-bind="visible: isEditable, click: $root.saveNote.bind(this)"><i class="glyphicon glyphicon-check"></i></button>
+                        <div class="btn-group" data-bind="visible: isEditable">
+                            <button class="btn btn-success" data-bind="click: $root.saveNote.bind(this)" title="Save changes"><i class="glyphicon glyphicon-check"></i></button>
+                            <button class="btn btn-default" data-bind="click: $root.getWebNotesData" title="Discard changes">Cancel</button>
+                        </div>
                     </td>
                     <td class="text-center"><a data-bind="visible: hasFile, click: $root.setFileToDownload.bind(this, fileId)" data-toggle="modal" data-target=".attachment-modal" style="cursor: pointer"><i class="glyphicon glyphicon-paperclip" title="Click for more info"></i></a></td>
 
@@ -106,7 +109,7 @@
                 <form class="form-group form-inline text-center">
                     <button type="button" class="btn btn-default form-control" data-dismiss="modal">Close</button>
                     <!--Button for a VALID email-->
-                    <button class="btn btn-primary form-control" data-bind="click: $root.emailNote, visible: emailToSendTo.isValid()">
+                    <button class="btn btn-primary form-control" data-bind="click: $root.emailNote, visible: emailToSendTo.isValid()" title="Email this note!">
                         Send
                     </button>
                     <!--Button for an INVALID email-->
